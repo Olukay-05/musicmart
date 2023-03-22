@@ -66,13 +66,17 @@ const SignUp = () => {
 
 
   return (
+    
     <div>
         <form onSubmit={handleSubmit(onSubmit)}>
 
 
-            <SignUpButton />
-
-            <LogoutButton />
+            <div className="google">
+                <SignUpButton />
+                <br />
+                <LogoutButton />
+            </div>
+            <br />
 
 
             <div className="form-control">
