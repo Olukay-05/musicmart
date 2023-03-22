@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -6,12 +6,36 @@ import { useForm } from "react-hook-form";
 import { Button, Form } from 'react-bootstrap';
 
 
+import { gapi } from "gapi-script";
+
+import SignUpButton from "../../../routes/google-login/googleSignUp"
+import LogoutButton from "../../../routes/google-login/googleLogout"
+
+
 import axios from 'axios';
+
+import "../signup/SignUp.scss"
+
+
+const clientId = "424483526692-muhblov1snhppbi16bkt5ubkcruh2md5.apps.googleusercontent.com"
+
 
 const SignUp = () => {
 
     const [error, setError] = useState(true);
     const navigate = useNavigate();
+
+
+    useEffect(() => {
+        function start() {
+            gapi.client.init({
+                clientId: clientId,
+                scope: ""
+            })
+        };
+
+        gapi.load("client:auth2", start);
+    });
 
     const {
         register,
@@ -42,8 +66,19 @@ const SignUp = () => {
 
 
   return (
+    
     <div>
         <form onSubmit={handleSubmit(onSubmit)}>
+
+
+            <div className="google">
+                <SignUpButton />
+                <br />
+                <LogoutButton />
+            </div>
+            <br />
+
+
             <div className="form-control">
                 <label>What's your email?</label>
                 <input 
@@ -68,7 +103,7 @@ const SignUp = () => {
                 <input 
                     type="text" 
                     name="email" 
-                    placeholder="Email"
+                    placeholder="Confirm your email"
                     {...register("email", {
                         required: "Email is required.",
                     pattern: {
