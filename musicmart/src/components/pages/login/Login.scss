@@ -66,3 +66,12 @@
 //   max-width: 150px;
 //   padding: 5px 10px;
 // }
+
+.custom-form {
+    max-width: 400px; /* Change the width as desired */
+    margin: auto; /* Centers the form horizontally */
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
