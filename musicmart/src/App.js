@@ -6,6 +6,8 @@ import Home from "../src/components/pages/home/Home"
 import { Routes, Route } from "react-router-dom";
 import './App.scss';
 import Navigation from "./routes/navigation/Navigation";
+import Subscription from "./components/pages/subscription/Subscription";
+import PaymentForm from "./components/pages/payment/PaymentForm";
 
 function App() {
   return (
@@ -18,7 +20,8 @@ function App() {
         <Route index element={ <Home /> }/>
         <Route path="Login" element={ <Login /> }/>
         <Route path="SignUp" element={ <SignUp /> }/>
-        {/* <Route path="" element={ }/> */}
+        <Route path="Subscription" element={ <Subscription /> }/>
+        <Route path="PaymentForm" element={ <PaymentForm /> }/>
       </Route>
     </Routes>
 

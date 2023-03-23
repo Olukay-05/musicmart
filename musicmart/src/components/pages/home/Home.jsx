@@ -2,7 +2,7 @@ import React from 'react'
 
 import NavBar from '../navBar/NavBar'
 import Main from '../main/Main'
-import Navigation from '../../../routes/navigation/Navigation'
+import PaymentForm from '../payment/PaymentForm'
 
 import "../home/Home.scss"
 
@@ -12,6 +12,7 @@ const Home = () => {
         <div className="app">
           <NavBar />
           <Main />
+          
         </div>
         <div className="musicControls">music controls</div>
     </div>

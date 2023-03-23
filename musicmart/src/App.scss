@@ -125,6 +125,10 @@ body {
 
 
 .cardsWrap{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Optional: add spacing between the cards */
+  margin-top: 20px;
   cursor: pointer;
   .card{
     background: $greyLighter;
