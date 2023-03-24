@@ -13,18 +13,7 @@ import PaystackPop from '@paystack/inline-js';
 
 const PaymentForm = () => {
 
-//    const [data, setData] = useState([])
-//    const handleChange = (e) => {
-//     setData({
-//         ...data,
-//         [e.target.name]: e.target.value
-        
-//     })
-//    }
-//    const handleSubmit = (e) => {
-//     e.preventDefault();
-//     handlePayment(data.email, parseFloat(data.amount));
-//   }
+
 
 
 
@@ -65,60 +54,7 @@ const payWithPaystack =(e)=>{
 
   return (
     <div>
-        <form>
-
-            {/* <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email"  required onChange={handleChange}/>
-            </div>
-            <div class="form-group">
-                <label for="amount">Amount</label>
-                <input type="tel" required onChange={handleChange}/>
-            </div> */}
-
-
-
-            {/* <div class="form-group">
-                <label for="first-name">First Name</label>
-                <input type="text"  onChange={handleChange}/>
-            </div>
-            <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input type="text" onChange={handleChange}/>
-            </div> */}
-
-
-
-            {/* <div class="form-submit">
-                <button type="submit" > Pay </button>
-            </div> */}
-        </form>
-
-
-
-{/* 
-        <form id="paymentForm" onSubmit={payWithPaystack}>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email-address" value={email} required onChange={(e)=> setEmail(e.target.value)}/>
-            </div>
-            <div class="form-group">
-                <label for="amount">Amount</label>
-                <input type="tel" id="amount" value={amount} required onChange={(e)=> setAmount(e.target.value)}/>
-            </div>
-            <div class="form-group">
-                <label for="first-name">First Name</label>
-                <input type="text" id="first-name" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
-            </div>
-            <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" value={lastName} onChange={(e) =>  setLastName(e.target.value)}/>
-            </div>
-            <div class="form-submit">
-                
-                <Button type="submit" onclick={ payWithPaystack }> Pay </Button>
-            </div>
-        </form> */}
+    
 
         <div className="musicmart">
             <h1>musicmart.</h1>
@@ -145,7 +81,7 @@ const payWithPaystack =(e)=>{
             <div className="form-submit">
                 <Button type="submit" onClick={payWithPaystack}>Pay</Button>
             </div>
-</Form>
+        </Form>
     </div>
   )
 }

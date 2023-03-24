@@ -17,25 +17,11 @@ import axios from 'axios';
 import "../signup/SignUp.scss"
 
 
-// const clientId = "424483526692-muhblov1snhppbi16bkt5ubkcruh2md5.apps.googleusercontent.com"
-
-
 const SignUp = () => {
 
     const [error, setError] = useState(true);
     const navigate = useNavigate();
 
-
-    // useEffect(() => {
-    //     function start() {
-    //         gapi.client.init({
-    //             clientId: clientId,
-    //             scope: ""
-    //         })
-    //     };
-
-    //     gapi.load("client:auth2", start);
-    // });
 
     const {
         register,
