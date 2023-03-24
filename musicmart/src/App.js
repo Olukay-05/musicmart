@@ -8,6 +8,7 @@ import './App.scss';
 import Navigation from "./routes/navigation/Navigation";
 import Subscription from "./components/pages/subscription/Subscription";
 import PaymentForm from "./components/pages/payment/PaymentForm";
+import Library from "./components/pages/library/Library";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="SignUp" element={ <SignUp /> }/>
         <Route path="Subscription" element={ <Subscription /> }/>
         <Route path="PaymentForm" element={ <PaymentForm /> }/>
+        <Route path="Library" element={ <Library /> }/>
       </Route>
     </Routes>
 
