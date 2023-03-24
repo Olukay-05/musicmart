@@ -26,6 +26,12 @@ const Navigation = () => {
           <Link className="nav-link" to="/SignUp">
             Sign Up
           </Link>
+
+          
+
+          <Link className="nav-link" to="/PaymentForm">
+              Subscription
+          </Link>
         </div>
       </div>
       <Outlet />
