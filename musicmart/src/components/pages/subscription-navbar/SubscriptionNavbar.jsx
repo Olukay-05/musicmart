@@ -33,18 +33,17 @@ const SubscriptionNavbar = () => {
           </Navbar.Collapse>
         </Navbar>
 
-        <Container fluid style={{ height: '40%', backgroundColor: '#1d75de' }}>
-      <div className="d-flex flex-column align-items-center justify-content-center h-100 mt-auto">
-        <h2 className="text-white text-center mb-3">Get premium free for 1 month</h2>
-        <p className="text-white text-center mb-4">Just for N900/month after. Cancel anytime.</p>
-        <div className="d-flex justify-content-center">
-          <Button variant="primary" size="lg" className="mr-2">GET STARTED</Button>
-          <Button variant="outline-light" size="lg">VIEW PLANS</Button>
-        </div>
-      </div>
-    </Container>
+      <Container fluid style={{ height: '20rem', backgroundColor: '#1d75de' }}>
+          <div className="d-flex flex-column align-items-flex-start justify-content-center h-100 mt-auto">
+            <h2 className="text-white text-center mb-3">Get premium free for 1 month</h2>
+            <p className="text-white text-center mb-4">Just for N900/month after. Cancel anytime.</p>
+            <div className="d-flex justify-content-center">
+              <Button variant="dark" size="lg" className="mr-2" style={{backgroundColor: 'black'}}>GET STARTED</Button>
+              <Button variant="outline-light" size="lg">VIEW PLANS</Button>
+            </div>
+          </div>
+      </Container>
 
-    <SubscriptionCard />
     </div>
   );
 }
