@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 
@@ -15,7 +15,10 @@ import 'bootstrap/scss/bootstrap.scss';
 
 const Login = () => {
 
-  const [error, setError] = useState(true);
+  const [error, setError] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
 
   const navigate = useNavigate();
 
@@ -36,20 +39,46 @@ const Login = () => {
           const res = await axios.post(url, loginData)
           console.log(res);
           setError(false);
+          // setIsLoggedIn(false);
+          navigate("/");
+
       } catch (error) {
-          
+        setError(true);
       };
   }
 
   const onSubmit = (data) => {
     console.log(data);
-    login(data);
+    
     // if(!error){
     //     navigate("/Home");
     // }
 
-    navigate("/");
-};
+    if (!data.email || !data.password) {
+      alert("Please sign up as a new user!");
+      setError(true);
+      return;
+    }
+      login(data);
+   
+  };
+
+
+
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     localStorage.setItem('isLoggedIn', true);
+  //     navigate('/');
+  //   } else {
+  //     localStorage.removeItem('isLoggedIn');
+  //     logout();
+  //   }
+  // }, [isLoggedIn, navigate]);
+
+  // const logout = () => {
+  //   setIsLoggedIn(false);
+  //   localStorage.removeItem('isLoggedIn');
+  // };
   
 
 
@@ -100,4 +129,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
