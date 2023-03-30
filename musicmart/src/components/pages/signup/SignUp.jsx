@@ -43,7 +43,12 @@ const SignUp = () => {
     }
     
     const onSubmit = (data) => {
-        
+
+
+        if(data.email !== data.confirmEmail){
+            alert("Emails do not match");
+            return;
+        }
         console.log(data);
         signUp(data);
         // if(!error){
@@ -94,17 +99,24 @@ const SignUp = () => {
         <Form.Label>Confirm your email</Form.Label>
         <Form.Control 
             type="text" 
-            name="email" 
+            name="confirmEmail" 
             placeholder="Confirm your email"
-            {...register("email", {
+            {...register("confirmEmail", {
                 required: "Email is required.",
                 pattern: {
                     value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
                     message: "Email is not valid."
-                }
+                },
+                // validate: (value) => value === register('email').value || 'The emails do not match',
+                // validate: (value) => value === getValues('email') || 'The emails do not match'
+
+                            // validate: (value) => value === email || 'The emails do not match'
+
+
+
             })}
         />
-        {errors.email && <p className="errorMsg">{errors.email.message}</p>}
+        {errors.confirmEmail && <p className="errorMsg">{errors.email.message}</p>}
     </Form.Group>
 
     <Form.Group className="form-control">
@@ -118,7 +130,8 @@ const SignUp = () => {
                 minLength: {
                     value: 6,
                     message: "Password should be at-least 6 characters."
-                }
+                },
+
             })}
         />
         {errors.password && <p className="errorMsg">{errors.password.message}</p>}
@@ -141,29 +154,29 @@ const SignUp = () => {
 
 
 
-            <Form.Group className="mb-3" controlId="gender">
-          <Form.Label>What's your gender?</Form.Label>
-          <Form.Check
-                type="radio"
-                label="Male"
-                value="male"
-                {...register("gender", {
-                required: "Please select your gender"
-                })}
-          />
-          <Form.Check
-                type="radio"
-                label="Female"
-                value="female"
-                {...register("gender")}
-          />
-
+        <Form.Group className="mb-3" controlId="gender">
+            <Form.Label>What's your gender?</Form.Label>
             <Form.Check
-                type="radio"
-                label="Prefer not to say"
-                value="preferNotToSay"
-                {...register("gender")}
-          />
+                    type="radio"
+                    label="Male"
+                    value="male"
+                    {...register("gender", {
+                    required: "Please select your gender"
+                    })}
+        />
+        <Form.Check
+            type="radio"
+            label="Female"
+            value="female"
+            {...register("gender")}
+        />
+
+        <Form.Check
+            type="radio"
+            label="Prefer not to say"
+            value="preferNotToSay"
+            {...register("gender")}
+        />
 
           
           {errors.gender && <p className="errorMsg">{errors.gender.message}</p>}
@@ -195,4 +208,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignUp;

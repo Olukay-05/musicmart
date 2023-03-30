@@ -27,8 +27,7 @@ const Navigation = () => {
             Sign Up
           </Link>
 
-          
-
+      
           <Link className="nav-link" to="/PaymentForm">
               Subscription
           </Link>
