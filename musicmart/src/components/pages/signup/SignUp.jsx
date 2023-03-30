@@ -30,30 +30,42 @@ const SignUp = () => {
     } = useForm();
 
     // const { reset } = useForm();
-
+    const url = "http://localhost:8080/api/v1/demo/signup"
 
     const signUp = async (signUpData) =>{
         try {
-            const res = await axios.post(URL, signUpData)
-            console.log(res)
-            setError(false)
+            const res = await axios.post(url, signUpData)
+            console.log(res);
+            setError(false);
         } catch (error) {
             
         };
     }
     
     const onSubmit = (data) => {
-        console.log(data);
-        signUp(data)
-        if(!error){
-            navigate("/Login")
+
+
+        if(data.email !== data.confirmEmail){
+            alert("Emails do not match");
+            return;
         }
+        console.log(data);
+        signUp(data);
+        // if(!error){
+        //     navigate("/Login");
+        // }else{
+        //     alert("invalid details, sign up with your correct details")
+
+        // }
+        navigate("/Login");
+       
     };
 
 
   return (
     
     <div>
+
         <Form onSubmit={handleSubmit(onSubmit)} className="custom-form">
 
 
@@ -64,83 +76,7 @@ const SignUp = () => {
             </div>
             <br />
 
-{/* 
-            <div className="form-control">
-                <label>What's your email?</label>
-                <input 
-                    type="text" 
-                    name="email" 
-                    placeholder="Email"
-                    {...register("email", {
-                        required: "Email is required.",
-                    pattern: {
-                        value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                        message: "Email is not valid."
-                        }
-                    })}
-                    
-                />
-                {errors.email && <p className="errorMsg">{errors.email.message}</p>}
 
-            </div>
-
-            <div className="form-control">
-                <label>Confirm your email</label>
-                <input 
-                    type="text" 
-                    name="email" 
-                    placeholder="Confirm your email"
-                    {...register("email", {
-                        required: "Email is required.",
-                    pattern: {
-                        value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                        message: "Email is not valid."
-                        }
-                    })}
-                    
-                />
-                {errors.email && <p className="errorMsg">{errors.email.message}</p>}
-
-            </div>
-
-            <div className="form-control">
-                <label>Create a password</label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        placeholder="Password"
-                        {...register("password", {
-                                required: "Password is required.",
-                                minLength: {
-                                value: 6,
-                                message: "Password should be at-least 6 characters."
-                            }
-                        })} 
-
-                    />
-
-                {errors.password && (
-                    <p className="errorMsg">{errors.password.message}</p>
-                )}
-            </div>
-
-            <div>
-                <label>
-                    What's your date of birth?
-                </label>
-                <input 
-                    type="date" 
-                    name="date"
-                    {
-                        ...register("date", {
-                        required: 'Date of birth is required',
-                        min: {
-                        value: '01-01-1900',
-                        message: 'Date of birth must be after 1900-01-01'
-                        }
-                    })}
-                />
-            </div> */}
 
             <Form.Group className="form-control">
         <Form.Label>What's your email?</Form.Label>
@@ -163,17 +99,24 @@ const SignUp = () => {
         <Form.Label>Confirm your email</Form.Label>
         <Form.Control 
             type="text" 
-            name="email" 
+            name="confirmEmail" 
             placeholder="Confirm your email"
-            {...register("email", {
+            {...register("confirmEmail", {
                 required: "Email is required.",
                 pattern: {
                     value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
                     message: "Email is not valid."
-                }
+                },
+                // validate: (value) => value === register('email').value || 'The emails do not match',
+                // validate: (value) => value === getValues('email') || 'The emails do not match'
+
+                            // validate: (value) => value === email || 'The emails do not match'
+
+
+
             })}
         />
-        {errors.email && <p className="errorMsg">{errors.email.message}</p>}
+        {errors.confirmEmail && <p className="errorMsg">{errors.email.message}</p>}
     </Form.Group>
 
     <Form.Group className="form-control">
@@ -187,7 +130,8 @@ const SignUp = () => {
                 minLength: {
                     value: 6,
                     message: "Password should be at-least 6 characters."
-                }
+                },
+
             })}
         />
         {errors.password && <p className="errorMsg">{errors.password.message}</p>}
@@ -210,29 +154,29 @@ const SignUp = () => {
 
 
 
-            <Form.Group className="mb-3" controlId="gender">
-          <Form.Label>What's your gender?</Form.Label>
-          <Form.Check
-                type="radio"
-                label="Male"
-                value="male"
-                {...register("gender", {
-                required: "Please select your gender"
-                })}
-          />
-          <Form.Check
-                type="radio"
-                label="Female"
-                value="female"
-                {...register("gender")}
-          />
-
+        <Form.Group className="mb-3" controlId="gender">
+            <Form.Label>What's your gender?</Form.Label>
             <Form.Check
-                type="radio"
-                label="Prefer not to say"
-                value="preferNotToSay"
-                {...register("gender")}
-          />
+                    type="radio"
+                    label="Male"
+                    value="male"
+                    {...register("gender", {
+                    required: "Please select your gender"
+                    })}
+        />
+        <Form.Check
+            type="radio"
+            label="Female"
+            value="female"
+            {...register("gender")}
+        />
+
+        <Form.Check
+            type="radio"
+            label="Prefer not to say"
+            value="preferNotToSay"
+            {...register("gender")}
+        />
 
           
           {errors.gender && <p className="errorMsg">{errors.gender.message}</p>}
@@ -264,4 +208,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignUp;
