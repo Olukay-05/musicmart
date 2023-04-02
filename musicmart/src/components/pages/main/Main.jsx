@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from '../../../reusable-components/cards/Card'
-import { ReactComponent as PlayIcon } from "../../assets/play.svg"
 import Categories from "../../pages/categories/Categories"
+
 
 
 
@@ -66,32 +66,12 @@ const Main = () => {
           
         </div>
         <div className="mainContent">
-       
-          <div className="cardsWrap">
-          
-          <h2>Uniquely yours</h2>
-
-{/* 
-            {albums.map((album) => (
-               <Card key={album.id} imgSrc={album.imgSrc} />
-              
-            ))} */}
-            <div className="card">
-              <div className="cardImage">
-                  <img src="https://images.unsplash.com/photo-1678649877879-01706b17cd37?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2080&q=80" alt="image1" />
-              </div>
-              <div className="cardContent">
-                  <p>Liked songs</p>
-              </div>
-            <span className="play-icon">
-              <PlayIcon />
-            </span>
-            </div>
-          </div>
+        <Categories />
+         
 
 
           
-          <div className="cardsWrap">
+          {/* <div className="cardsWrap">
           <h2>Focus</h2>
             <p className="subText">Music to help you concentrate.</p>
             <div className="cardsWrapInner">
@@ -105,11 +85,11 @@ const Main = () => {
                     <span>Music to help you concentrate.</span>
                 </div>
                 <span className="play-icon">
-                  <PlayIcon />
+              
                 </span>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
     </div>
   )

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom"
 // import { handlePayment } from '../../../routes/paystack/PaystackPayment'
 
 // import Button from "react-bootstrap/Button"
@@ -14,7 +15,7 @@ import PaystackPop from '@paystack/inline-js';
 const PaymentForm = () => {
 
 
-
+const navigate = useNavigate();
 
 
 const [email, setEmail] = useState("")
@@ -25,6 +26,14 @@ const [lastName, setLastName] = useState("")
 
 const payWithPaystack =(e)=>{
     e.preventDefault();
+
+    const allowedAmounts = [200, 400, 500];
+    const amountInNairas = parseFloat(amount);
+
+    if (!allowedAmounts.includes(amountInNairas)) {
+        alert("Invalid amount. Please choose N200 for Student, N400 for Family or N500 for Individual");
+        return;
+    }
 
     const paystack = new PaystackPop()
     paystack.newTransaction({
@@ -40,11 +49,12 @@ const payWithPaystack =(e)=>{
             setAmount("");
             setFirstName("");
             setLastName("");
-
+            navigate("/")
         },
 
         onCancel(){
             alert("You have Cancelled the transaction, close transaction page.")
+            navigate("/")
         }
     })
 }
@@ -67,7 +77,7 @@ const payWithPaystack =(e)=>{
             </Form.Group>
             <Form.Group controlId="amount">
                 <Form.Label>Amount</Form.Label>
-                <Form.Control type="tel" value={amount} required onChange={(e)=> setAmount(e.target.value)} />
+                <Form.Control type="tel" value={amount} required onChange={(e)=> setAmount(e.target.value)} min="200" max="500" step="100" />
             </Form.Group>
             <Form.Group controlId="firstName">
                 <Form.Label>First Name</Form.Label>

@@ -18,7 +18,7 @@ const Login = () => {
   const [error, setError] = useState(false);
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-
+  // const user = JSON.parse(localStorage.getItem('user'));
 
   const navigate = useNavigate();
 
@@ -40,6 +40,9 @@ const Login = () => {
           console.log(res);
           setError(false);
           // setIsLoggedIn(false);
+
+          localStorage.setItem('user', JSON.stringify(res.data));
+
           navigate("/");
 
       } catch (error) {
@@ -50,9 +53,7 @@ const Login = () => {
   const onSubmit = (data) => {
     console.log(data);
     
-    // if(!error){
-    //     navigate("/Home");
-    // }
+  
 
     if (!data.email || !data.password) {
       alert("Please sign up as a new user!");
@@ -64,22 +65,6 @@ const Login = () => {
   };
 
 
-
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     localStorage.setItem('isLoggedIn', true);
-  //     navigate('/');
-  //   } else {
-  //     localStorage.removeItem('isLoggedIn');
-  //     logout();
-  //   }
-  // }, [isLoggedIn, navigate]);
-
-  // const logout = () => {
-  //   setIsLoggedIn(false);
-  //   localStorage.removeItem('isLoggedIn');
-  // };
-  
 
 
 

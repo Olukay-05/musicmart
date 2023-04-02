@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Login from "../src/components/pages/login/Login";
 import SignUp from "./components/pages/signup/SignUp";
 
@@ -10,16 +11,25 @@ import Subscription from "./components/pages/subscription/Subscription";
 import PaymentForm from "./components/pages/payment/PaymentForm";
 import Library from "./components/pages/library/Library";
 import SubscriptionPlan from "./components/pages/subscription-plans/SubscriptionPlan";
+import WebPlayback from "./components/pages/web-playback/WebPlayback";
 
 
 function App() {
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
+    setUser(userFromLocalStorage);
+  }, []);
+
   return (
     // <div className="App">
     //   <Login />
     //   <SignUp />
     // </div>
     <Routes>
-      <Route path="/" element={ <SubscriptionPlan /> } > 
+      <Route path="/" element={ <Navigation user={user} /> } > 
         <Route index element={ <Home /> }/>
         <Route path="Login" element={ <Login /> }/>
         <Route path="SignUp" element={ <SignUp /> }/>
@@ -28,7 +38,8 @@ function App() {
           <Route /> */}
         <Route path="PaymentForm" element={ <PaymentForm /> }/>
         <Route path="Library" element={ <Library /> }/>
-        {/* <Route path="SubscriptionPlan" element={ <SubscriptionPlan /> }/> */}
+        <Route path="SubscriptionPlan" element={ <SubscriptionPlan /> }/>
+        <Route path="WebPlayback" element={ <WebPlayback /> }/>
         
       </Route>
     </Routes>
