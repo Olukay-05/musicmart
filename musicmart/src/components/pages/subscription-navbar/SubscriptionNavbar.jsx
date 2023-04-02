@@ -6,7 +6,7 @@ import React from "react"
 const SubscriptionNavbar = () => {
   return (
     <div>
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="light" expand="lg" style={{ backgroundColor: '#040404' }}>
           <Navbar.Brand href="#home">
             <img
               src="/logo.png"
@@ -20,7 +20,7 @@ const SubscriptionNavbar = () => {
           <Navbar.Collapse id="basic-navbar-nav">
 
       
-            <Nav className="ml-auto">
+            <Nav className="d-flex justify-content-end" style={{ width: "95%" }}>
               <Nav.Link href="#">Premium</Nav.Link>
               <Nav.Link href="#">Support</Nav.Link>
               <Nav.Link href="#">Download</Nav.Link>

@@ -8,7 +8,7 @@ function SubscriptionCard({ heading, subheading, benefit1, benefit2, benefit3, b
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log("you clicked me!");
     navigate("/PaymentForm");
 
   }
@@ -24,14 +24,19 @@ function SubscriptionCard({ heading, subheading, benefit1, benefit2, benefit3, b
           <ListGroupItem><BsCheck className="text-success mr-2" />{benefit2}</ListGroupItem>
           <ListGroupItem><BsCheck className="text-success mr-2" />{benefit3}</ListGroupItem>
         </ListGroup>
-        <Button 
-          onSubmit={ handleSubmit }
-          variant="primary" 
-          size="md" className="mx-auto bg-black  rounded-pill" 
-          style={{ fontWeight: 'bold', fontSize: '14px', padding: "10px", width: "200px" }}
-        >
-          {buttonText}
-        </Button>
+       
+        <form  onSubmit={ handleSubmit }>
+          <Button 
+            // onClick={() => { window.location.href = "/PaymentForm" }}
+            type="submit"
+            variant="primary" 
+            size="md" className="mx-auto bg-black  rounded-pill" 
+            style={{ fontWeight: 'bold', fontSize: '14px', padding: "10px", width: "200px" }}
+          >
+            {buttonText}
+          </Button>
+        </form>
+       
 
         <p style={{color: 'black', fontSize: '11px', marginTop: "50px"}}>Terms and conditions apply. 1 month free not available for users who have already tried Premium.</p>
       </Card.Body>

@@ -13,6 +13,7 @@ import SignUpButton from "../../../routes/google-login/googleSignUp"
 
 
 import axios from 'axios';
+import moment from "moment";
 
 import "../signup/SignUp.scss"
 
@@ -21,6 +22,7 @@ const SignUp = () => {
 
     const [error, setError] = useState(true);
     const navigate = useNavigate();
+   
 
 
     const {
@@ -51,6 +53,8 @@ const SignUp = () => {
         }
         console.log(data);
         signUp(data);
+        // localStorage.setItem('user', JSON.stringify(data)); 
+
         // if(!error){
         //     navigate("/Login");
         // }else{
@@ -62,11 +66,26 @@ const SignUp = () => {
     };
 
 
+    // useEffect(() => {
+    //     const user = JSON.parse(localStorage.getItem('user')); // get user data from local storage
+    //     if (user) {
+    //       // set the form data from local storage if it exists
+    //       register("email").setValue(user.email);
+    //       register("confirmEmail").setValue(user.confirmEmail);
+    //       register("password").setValue(user.password);
+    //       register("date").setValue(user.date);
+    //       register("gender").setValue(user.gender);
+    //       register("firstOption").setValue(user.firstOption);
+    //       register("secondOption").setValue(user.secondOption);
+    //     }
+    //   }, []);
+
+
   return (
     
     <div>
 
-        <Form onSubmit={handleSubmit(onSubmit)} className="custom-form">
+        <Form onSubmit={handleSubmit(onSubmit)} className="custom-form" fluid style={{ backgroundColor: '#131313' }}>
 
 
             <div className="google">
@@ -79,7 +98,7 @@ const SignUp = () => {
 
 
             <Form.Group className="form-control">
-        <Form.Label>What's your email?</Form.Label>
+        {/* <Form.Label>What's your email?</Form.Label> */}
         <Form.Control 
             type="text" 
             name="email" 
@@ -96,7 +115,7 @@ const SignUp = () => {
     </Form.Group>
 
     <Form.Group className="form-control">
-        <Form.Label>Confirm your email</Form.Label>
+        {/* <Form.Label>Confirm your email</Form.Label> */}
         <Form.Control 
             type="text" 
             name="confirmEmail" 
@@ -120,7 +139,7 @@ const SignUp = () => {
     </Form.Group>
 
     <Form.Group className="form-control">
-        <Form.Label>Create a password</Form.Label>
+        {/* <Form.Label>Create a password</Form.Label> */}
         <Form.Control 
             type="password" 
             name="password" 
@@ -144,12 +163,30 @@ const SignUp = () => {
             name="date"
             {...register("date", {
                 required: 'Date of birth is required',
-                min: {
-                    value: '01-01-1900',
-                    message: 'Date of birth must be after 1900-01-01'
+                // min: {
+                //     value: '01-01-1900',
+                //     message: 'Date of birth must be after 1900-01-01'
+                // },
+                validate: {
+                    validDate: value => {
+                        const isValidDate = moment(value, 'YYYY-MM-DD', true).isValid();
+                        if (!isValidDate) {
+                            return 'Please enter a valid date in the format YYYY-MM-DD';
+                        }
+                        const maxDate = moment().subtract(16, 'years');
+                        if (moment(value).isAfter(maxDate)) {
+                            return 'You must be at least 16 years old to sign up';
+                        }
+                        const minDate = moment('1900-01-01');
+                        if (moment(value).isBefore(minDate)) {
+                            return 'Date of birth must be after 1900-01-01';
+                        }
+                    }
                 }
             })}
+
         />
+         {errors.date && <p>{errors.date.message}</p>}
     </Form.Group>
 
 
